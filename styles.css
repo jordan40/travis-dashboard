@@ -1,0 +1,8 @@
+th {
+  text-align: right;
+}
+
+fieldset {
+  display: inline;
+  float: left;
+}
