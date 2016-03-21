@@ -4,7 +4,7 @@ var CONFIG  = require("./config"),
 		'User-Agent': 'travis-ci-dashboard',
 		'Authorization': 'token ' + CONFIG.GITHUB_TOKEN
 	},
-	username = 'telusdigital',
+	username = process.argv[2],
 	reposWithTesting = []
 
 getRepos (function (allRepos) {
