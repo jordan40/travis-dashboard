@@ -13,13 +13,13 @@ fieldset {
 	color: white;
 }
 .passing {
-	background-color: green;
+	background-color: #4c1;
 }
 .failing {
-	background-color: red;
+	background-color: #e05d44;
 }
 .unknown {
-	background-color: grey;
+	background-color: #9f9f9f;
 }
 /* --- END pass / fail styles */
 
