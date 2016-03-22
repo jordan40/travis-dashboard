@@ -32,7 +32,7 @@ getRepos (function (allRepos) {
 
 				buffered_out += "<html>";
 				buffered_out += "<head>";
-				buffered_out += "<title>Travis CI - Dashbard</title>";
+				buffered_out += "<title>Travis CI - Dashboard</title>";
 				buffered_out += "<link rel='stylesheet' type='text/css' href='styles.css'>";
 				buffered_out += "</head>";
 				buffered_out += "<body>";
