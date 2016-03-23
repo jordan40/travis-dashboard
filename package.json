@@ -1,0 +1,9 @@
+{
+  "name": "Travis-CI Dashboard",
+  "description": "Creates a dashboard of a user/orgs repos to see whats passing and failing at a glance on Travis CI.",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "httpdispatcher": "*"
+  }
+}
