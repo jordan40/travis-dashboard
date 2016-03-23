@@ -1,3 +1,7 @@
+body {
+  background-color: #333;
+  color: #f4f4f4;
+}
 th {
   text-align: right;
 }
@@ -5,6 +9,10 @@ th {
 fieldset {
   display: inline;
   float: left;
+}
+legend {
+  padding: 0 10px;
+  font-size: 1.5em;
 }
 
 /* pass / fail styles */
