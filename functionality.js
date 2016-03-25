@@ -14,7 +14,7 @@ repos.forEach (function (repo) {
   stats[badge]++;
 })
 
-buffered_out += "<div>Passing / Failing / Unknown : <span class='passing'>" + stats['passing'] + "</span> / <span class='failing'>" + stats['failing'] + "</span> / <span class='unknown'>" + stats['unknown'] + "</span></div>";
+buffered_out += "<div>Passing / Failing / Unknown : <span class='passing'>" + stats['passing'] + "</span>/<span class='failing'>" + stats['failing'] + "</span>/<span class='unknown'>" + stats['unknown'] + "</span></div>";
 // --- END Stats
 
 // Organize
@@ -62,7 +62,7 @@ for (var bucketName in buckets) {
 }
 
 for (var bucketName in buckets) {
-	buffered_out += "<fieldset><legend>" + bucketName + " (<span class='passing'>" + buckets[bucketName]['stats']['passing'] + "</span> / <span class='failing'>" + buckets[bucketName]['stats']['failing'] + "</span> / <span class='unknown'>" + buckets[bucketName]['stats']['unknown'] + "</span>)</legend><table>";
+	buffered_out += "<fieldset><legend>" + bucketName + " (<span class='passing'>" + buckets[bucketName]['stats']['passing'] + "</span>/<span class='failing'>" + buckets[bucketName]['stats']['failing'] + "</span>/<span class='unknown'>" + buckets[bucketName]['stats']['unknown'] + "</span>)</legend><table>";
 	buckets[bucketName].forEach (function (repo) {
 		buffered_out += "<tr><th>" + repo.name + "</th><td>" + repo.badgeSVG + "</td></tr>";
 	});
