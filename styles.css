@@ -9,6 +9,7 @@ th {
 fieldset {
   display: inline;
   float: left;
+  border-style: dotted;
 }
 legend {
   padding: 0 10px;
