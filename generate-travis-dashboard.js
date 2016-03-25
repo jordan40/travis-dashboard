@@ -27,23 +27,9 @@ getRepos (function (allRepos) {
 			}
 
 			if (++travis_counter == allRepos.length) {
-				var buffered_out = "",
-				    lastRunDate = new Date()
+				var lastRunDate = new Date()
 
-				buffered_out += "<html>";
-				buffered_out += "<head>";
-				buffered_out += "<title>Travis CI - Dashboard</title>";
-				buffered_out += "<link rel='stylesheet' type='text/css' href='styles.css'>";
-				buffered_out += "</head>";
-				buffered_out += "<body>";
-				buffered_out += "<div class='spinner'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>";
-				buffered_out += "<script src='https://code.jquery.com/jquery-1.12.2.min.js'></script>";
-				buffered_out += "<script>var lastRunDate = '" + lastRunDate + "'; var repos = " + JSON.stringify (reposWithTesting) + ";</script>";
-				buffered_out += "<script src='functionality.js'></script>";
-				buffered_out += "</body>";
-				buffered_out += "</html>";
-
-				console.log (buffered_out);
+				console.log ("var lastRunDate = '" + lastRunDate + "';var repos = " + JSON.stringify (reposWithTesting) + ";")
 			}
 		})
 	})

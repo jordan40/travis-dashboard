@@ -31,6 +31,16 @@ dispatcher.onGet("/functionality.js", function(req, res) {
     })
 })
 
+dispatcher.onGet("/data.js", function(req, res) {
+    res.writeHead(200, {'Content-Type': 'text/javascript'});
+
+    read ('data.js', function (data) {
+        res.end(data);
+    }, function (error) {
+        console.log (error);
+    })
+})
+
 dispatcher.onGet("/styles.css", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/css'});
 
