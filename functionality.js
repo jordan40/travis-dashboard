@@ -14,7 +14,7 @@ repos.forEach (function (repo) {
   stats[badge]++;
 })
 
-buffered_out += "<div>Passing / Failing / Unknown : <span class='passing'>" + stats['passing'] + "</span>/<span class='failing'>" + stats['failing'] + "</span>/<span class='unknown'>" + stats['unknown'] + "</span></div>";
+buffered_out += "<div class='stats'>Passing / Failing / Unknown : <span class='passing'>" + stats['passing'] + "</span>/<span class='failing'>" + stats['failing'] + "</span>/<span class='unknown'>" + stats['unknown'] + "</span></div>";
 // --- END Stats
 
 // Organize
