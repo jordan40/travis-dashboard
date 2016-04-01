@@ -63,8 +63,9 @@ for (var bucketName in buckets) {
 
 for (var bucketName in buckets) {
 	buffered_out += "<fieldset><legend>" + bucketName + " (<span class='passing'>" + buckets[bucketName]['stats']['passing'] + "</span>/<span class='failing'>" + buckets[bucketName]['stats']['failing'] + "</span>/<span class='unknown'>" + buckets[bucketName]['stats']['unknown'] + "</span>)</legend><table>";
+	buffered_out += "<tr><th>Repo</th><th>Tests</th><th>Issues</th><th>PRs</th></tr>"
 	buckets[bucketName].forEach (function (repo) {
-		buffered_out += "<tr><th>" + repo.name + "</th><td>" + repo.badgeSVG + "</td></tr>";
+		buffered_out += "<tr><th>" + repo.name + "</th><td>" + repo.badgeSVG + "</td><td>" + repo.issuesCount + "</td><td>" + repo.pullRequestCount + "</td></tr>";
 	});
 	buffered_out += "</table></fieldset>";
 }
