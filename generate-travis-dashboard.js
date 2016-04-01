@@ -13,7 +13,7 @@ getRepos (function (allRepos) {
 		getGithubIssues (username, repo.name, function (github_issues) {
 			getGithubPullRequests (username, repo.name, function (github_pullrequests) {
 				getTravisStatus (username, repo.name, function (badgeSVG) {
-					if (badgeSVG.length > 0) {
+//					if (badgeSVG.length > 0) {
 						var badge;
 
 						if      (badgeSVG.indexOf("passing") >= 0)  { badge = "passing" }
@@ -28,7 +28,7 @@ getRepos (function (allRepos) {
 							'issuesCount': JSON.parse(github_issues).length,
 							'pullRequestCount': JSON.parse(github_pullrequests).length
 						})
-					}
+//					}
 
 					if (++travis_counter == allRepos.length) {
 						var lastRunDate = new Date()
