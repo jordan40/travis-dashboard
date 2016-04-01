@@ -48,7 +48,7 @@ div.stats {
 }
 
 .spinner > div {
-  background-color: #333;
+  background-color: #ccc;
   height: 100%;
   width: 6px;
   display: inline-block;
