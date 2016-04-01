@@ -65,7 +65,7 @@ for (var bucketName in buckets) {
 	buffered_out += "<fieldset><legend>" + bucketName + " (<span class='passing'>" + buckets[bucketName]['stats']['passing'] + "</span>/<span class='failing'>" + buckets[bucketName]['stats']['failing'] + "</span>/<span class='unknown'>" + buckets[bucketName]['stats']['unknown'] + "</span>)</legend><table>";
 	buffered_out += "<tr><th>Repo</th><th>Tests</th><th>Issues</th><th>PRs</th></tr>"
 	buckets[bucketName].forEach (function (repo) {
-		buffered_out += "<tr><th>" + repo.name + "</th><td>" + repo.badgeSVG + "</td><td>" + repo.issuesCount + "</td><td>" + repo.pullRequestCount + "</td></tr>";
+		buffered_out += "<tr><th><a href='https://github.com/"+ repo.owner + "/" + repo.name + "'>" + repo.name + "</a></th><td><a href='https://travis-ci.org/"+ repo.owner + "/" + repo.name + "'>" + repo.badgeSVG + "</a></td><td><a href='https://github.com/"+ repo.owner + "/" + repo.name + "/issues'>" + repo.issuesCount + "</a></td><td><a href='https://github.com/"+ repo.owner + "/" + repo.name + "/pulls'>" + repo.pullRequestCount + "</a></td></tr>";
 	});
 	buffered_out += "</table></fieldset>";
 }
