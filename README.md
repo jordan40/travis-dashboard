@@ -9,7 +9,7 @@ Creates a dashboard of a user/orgs repos to see whats passing and failing at a g
 
 ### run
 ```
-node generate-travis-dashboard.js {{ organization_name }} > index.html
+node generate-travis-dashboard.js {{ organization_name }} > data.js
 ```
 
 ### open results in index.html
