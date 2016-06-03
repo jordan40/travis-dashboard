@@ -12,7 +12,8 @@ getRepos (function (allRepos) {
 	allRepos.forEach (function (repo) {
 		getGithubIssues (username, repo.name, function (github_issues) {
 			getGithubPullRequests (username, repo.name, function (github_pullrequests) {
-				getTravisStatus (username, repo.name, function (badgeSVG) {
+				getTravisToken(CONFIG.GITHUB_TOKEN, function(travisToken) {
+					getTravisStatus (username, repo.name, travisToken, function (badgeSVG) {
 //					if (badgeSVG.length > 0) {
 						var badge;
 
@@ -34,7 +35,10 @@ getRepos (function (allRepos) {
 						var lastRunDate = new Date()
 
 						console.log ("var lastRunDate = '" + lastRunDate + "';var repos = " + JSON.stringify (reposWithTesting) + ";")
+						console.log ("var githubHost = '" + CONFIG.GITHUB_API_HOST + "';")
+						console.log ("var travisHost = '" + CONFIG.TRAVIS_API_HOST + "';")
 					}
+					})
 				})
 			})
 		})
@@ -44,9 +48,9 @@ getRepos (function (allRepos) {
 function getGithubPullRequests (owner, repo, callback) {
 	var per_page = 100,
 	    options = {
-	      host: 'api.github.com',
+	      host: CONFIG.GITHUB_API_HOST,
 	      port: 443,
-	      path: "/repos/" + owner + "/" + repo + "/pulls",
+	      path: "/api/v3/repos/" + owner + "/" + repo + "/pulls",
 	      method: 'GET',
 	      headers: headers
 	    }
@@ -73,9 +77,9 @@ function getGithubPullRequests (owner, repo, callback) {
 function getGithubIssues (owner, repo, callback) {
 	var per_page = 100,
 	    options = {
-	      host: 'api.github.com',
+	      host: CONFIG.GITHUB_API_HOST,
 	      port: 443,
-	      path: "/repos/" + owner + "/" + repo + "/issues",
+	      path: "/api/v3/repos/" + owner + "/" + repo + "/issues",
 	      method: 'GET',
 	      headers: headers
 	    }
@@ -99,13 +103,48 @@ function getGithubIssues (owner, repo, callback) {
 	req.end()	
 }
 
-function getTravisStatus (username, rolename, callback) {
+function getTravisToken (githubToken, callback) {
+	options = {
+			host: CONFIG.TRAVIS_API_HOST,
+			port: 443,
+			path: "/api/auth/github",
+			method: 'POST',
+			headers: {
+				'User-Agent': 'travis-ci-dashboard',
+				'Content-Type': 'application/json'
+			}
+	}
+	req = http.request(options, function(res) {
+		var buffered_out = ''
+			
+			res.setEncoding('utf8')
+			res.on('data', function (chunk) {
+				buffered_out += chunk
+			})
+			res.on('end', function () {
+				callback(JSON.parse (buffered_out).access_token)
+			})
+	})
+	
+	req.on('error', function(error) {
+		console.log('problem with request: ' + error.message);
+	})
+	
+	req.write('{"github_token":"' + githubToken + '"}')
+	req.end()	
+}
+
+function getTravisStatus (username, rolename, travisToken, callback) {
 	var per_page = 100,
 	    options = {
-	      host: 'api.travis-ci.org',
+	      host: CONFIG.TRAVIS_API_HOST,
 	      port: 443,
-	      path: "/" + username + "/" + rolename + ".svg",
-	      method: 'GET'
+	      path: "/api/" + username + "/" + rolename + ".svg",
+	      method: 'GET',
+    	  headers: {
+    			'User-Agent': 'travis-ci-dashboard',
+    			'Authorization': 'token ' + travisToken
+    		}
 	    }
 	    req = http.request(options, function(res) {
 			var buffered_out = ''
@@ -143,9 +182,9 @@ function getRepos (callback) {
 function getPages (pagenumber, repos, callback) {
 	var per_page = 100,
 	    options = {
-	      host: 'api.github.com',
+	      host: CONFIG.GITHUB_API_HOST,
 	      port: 443,
-	      path: "/orgs/" + username + "/repos?per_page=" + per_page + "&page=" + pagenumber,
+	      path: "/api/v3/orgs/" + username + "/repos?per_page=" + per_page + "&page=" + pagenumber,
 	      method: 'GET',
 	      headers: headers
 	    }
